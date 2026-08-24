@@ -12,7 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+// Allow localhost (dev) + any Netlify/Vercel preview & production origins via CLIENT_URL.
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      process.env.CLIENT_URL, // e.g. https://cric-stat.netlify.app
+    ].filter(Boolean),
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
