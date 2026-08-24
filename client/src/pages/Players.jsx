@@ -59,10 +59,22 @@ const Players = () => {
 
   return (
     <div className="page">
+      <div className="page-hero">
+        <div className="page-hero-content">
+          <div className="page-hero-badge">
+            <span className="badge-icon">👥</span>
+            <span>Player Management</span>
+          </div>
+          <h1 className="page-hero-title"><FaUsers /> All Players</h1>
+          <p className="page-hero-subtitle">Track batsmen, bowlers, all-rounders & keepers. Add, edit, or remove players instantly.</p>
+        </div>
+        <div className="page-hero-glow" />
+      </div>
+
       <div className="page-header">
         <div>
           <h1 className="page-title"><FaUsers /> Players</h1>
-          <p className="page-subtitle">Track batsmen, bowlers, all-rounders &amp; keepers.</p>
+          <p className="page-subtitle">Your roster of cricket talent.</p>
         </div>
         <button className="btn btn-primary" onClick={() => setShowForm(!showForm)}>
           <FaPlus /> {showForm ? 'Cancel' : 'Add Player'}
@@ -88,7 +100,14 @@ const Players = () => {
       )}
 
       {players.length === 0 ? (
-        <p className="empty-msg">No players found. Add your first player!</p>
+        <div className="empty-state">
+          <div className="empty-icon">🏏</div>
+          <h3>No players found</h3>
+          <p>Start building your cricket roster. Add your first player above!</p>
+          <button className="btn btn-primary" onClick={() => setShowForm(true)} style={{ marginTop: '16px' }}>
+            <FaPlus /> Add Player
+          </button>
+        </div>
       ) : (
         <div className="player-grid">
           {players.map(p => (

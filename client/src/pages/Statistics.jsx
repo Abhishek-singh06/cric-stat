@@ -69,12 +69,35 @@ const Statistics = () => {
 
   if (loading) return <Loader />;
 
+  const totalRuns = stats.reduce((sum, s) => sum + (s.runs || 0), 0);
+  const totalWickets = stats.reduce((sum, s) => sum + (s.wickets || 0), 0);
+  const totalCatches = stats.reduce((sum, s) => sum + (s.catches || 0), 0);
+  const totalSixes = stats.reduce((sum, s) => sum + (s.sixes || 0), 0);
+
   return (
     <div className="page">
+      <div className="page-hero">
+        <div className="page-hero-content">
+          <div className="page-hero-badge">
+            <span className="badge-icon">📊</span>
+            <span>Performance Stats</span>
+          </div>
+          <h1 className="page-hero-title"><FaChartBar /> Match Statistics</h1>
+          <p className="page-hero-subtitle">Record per-match batting & bowling performances. Every run, wicket & catch counts.</p>
+          <div className="hero-quick-stats">
+            <span className="quick-stat"><b>{totalRuns}</b> Runs</span>
+            <span className="quick-stat"><b>{totalWickets}</b> Wickets</span>
+            <span className="quick-stat"><b>{totalSixes}</b> Sixes</span>
+            <span className="quick-stat"><b>{totalCatches}</b> Catches</span>
+          </div>
+        </div>
+        <div className="page-hero-glow" />
+      </div>
+
       <div className="page-header">
         <div>
           <h1 className="page-title"><FaChartBar /> Statistics</h1>
-          <p className="page-subtitle">Record per-match batting &amp; bowling performances.</p>
+          <p className="page-subtitle">All recorded player performances across matches.</p>
         </div>
         <button className="btn btn-primary" onClick={() => setShowForm(!showForm)}>
           <FaPlus /> {showForm ? 'Cancel' : 'Add Stat'}
@@ -123,7 +146,14 @@ const Statistics = () => {
       )}
 
       {stats.length === 0 ? (
-        <p className="empty-msg">No statistics recorded yet.</p>
+        <div className="empty-state">
+          <div className="empty-icon">📊</div>
+          <h3>No statistics recorded</h3>
+          <p>Add your first match performance to start tracking player stats.</p>
+          <button className="btn btn-primary" onClick={() => setShowForm(true)} style={{ marginTop: '16px' }}>
+            <FaPlus /> Add Stat Entry
+          </button>
+        </div>
       ) : (
         <div className="table-wrapper">
           <table className="data-table">
@@ -137,14 +167,14 @@ const Statistics = () => {
             <tbody>
               {stats.map(s => (
                 <tr key={s._id}>
-                  <td>{s.player_id?.name || '—'}</td>
+                  <td><strong>{s.player_id?.name || '—'}</strong></td>
                   <td>{s.match_id ? `${s.match_id.team1} vs ${s.match_id.team2}` : '—'}</td>
                   <td><span className={`badge badge-${s.match_id?.format?.toLowerCase()}`}>{s.match_id?.format}</span></td>
-                  <td>{s.runs}</td>
+                  <td><strong style={{ color: 'var(--gold)' }}>{s.runs}</strong></td>
                   <td>{s.balls_faced}</td>
                   <td>{s.fours}</td>
-                  <td>{s.sixes}</td>
-                  <td>{s.wickets}</td>
+                  <td style={{ color: 'var(--crimson)', fontWeight: 600 }}>{s.sixes}</td>
+                  <td style={{ color: 'var(--green)', fontWeight: 600 }}>{s.wickets}</td>
                   <td>{s.overs_bowled}</td>
                   <td>{s.runs_conceded}</td>
                   <td>{s.catches}</td>

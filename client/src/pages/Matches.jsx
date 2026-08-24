@@ -56,12 +56,35 @@ const Matches = () => {
 
   if (loading) return <Loader />;
 
+  const formatCounts = {
+    Test: matches.filter(m => m.format === 'Test').length,
+    ODI: matches.filter(m => m.format === 'ODI').length,
+    T20: matches.filter(m => m.format === 'T20').length,
+  };
+
   return (
     <div className="page">
+      <div className="page-hero">
+        <div className="page-hero-content">
+          <div className="page-hero-badge">
+            <span className="badge-icon">📅</span>
+            <span>Match Center</span>
+          </div>
+          <h1 className="page-hero-title"><FaCalendarAlt /> Fixtures & Results</h1>
+          <p className="page-hero-subtitle">Log fixtures across Test, ODI & T20 formats. Track venues, dates & winners.</p>
+          <div className="hero-quick-stats">
+            <span className="quick-stat"><b>{formatCounts.Test}</b> Test</span>
+            <span className="quick-stat"><b>{formatCounts.ODI}</b> ODI</span>
+            <span className="quick-stat"><b>{formatCounts.T20}</b> T20</span>
+          </div>
+        </div>
+        <div className="page-hero-glow" />
+      </div>
+
       <div className="page-header">
         <div>
           <h1 className="page-title"><FaCalendarAlt /> Matches</h1>
-          <p className="page-subtitle">Log fixtures across Test, ODI &amp; T20 formats.</p>
+          <p className="page-subtitle">All recorded fixtures at a glance.</p>
         </div>
         <button className="btn btn-primary" onClick={() => setShowForm(!showForm)}>
           <FaPlus /> {showForm ? 'Cancel' : 'Add Match'}
@@ -89,7 +112,14 @@ const Matches = () => {
       )}
 
       {matches.length === 0 ? (
-        <p className="empty-msg">No matches recorded yet.</p>
+        <div className="empty-state">
+          <div className="empty-icon">🏏</div>
+          <h3>No matches recorded</h3>
+          <p>Add your first fixture to start tracking cricket history.</p>
+          <button className="btn btn-primary" onClick={() => setShowForm(true)} style={{ marginTop: '16px' }}>
+            <FaPlus /> Add Match
+          </button>
+        </div>
       ) : (
         <table className="data-table">
           <thead>
@@ -99,8 +129,8 @@ const Matches = () => {
             {matches.map((m, i) => (
               <tr key={m._id}>
                 <td>{i + 1}</td>
-                <td>{m.team1}</td>
-                <td>{m.team2}</td>
+                <td><strong>{m.team1}</strong></td>
+                <td><strong>{m.team2}</strong></td>
                 <td><span className={`badge badge-${m.format.toLowerCase()}`}>{m.format}</span></td>
                 <td>{m.match_date}</td>
                 <td>{m.venue || '—'}</td>

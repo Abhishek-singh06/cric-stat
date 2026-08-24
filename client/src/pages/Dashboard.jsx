@@ -46,10 +46,39 @@ const Dashboard = () => {
 
   return (
     <div className="page">
+      <div className="hero-section">
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="badge-icon">🏏</span>
+            <span>Cric-Stat Dashboard</span>
+          </div>
+          <h1 className="hero-title"><GiCricketBat /> Your Cricket Universe</h1>
+          <p className="hero-subtitle">Track players, matches & performances at a glance — real-time stats, zero lag.</p>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <span className="hero-stat-value">{players.length}</span>
+              <span className="hero-stat-label">Players Tracked</span>
+            </div>
+            <div className="hero-stat-divider" />
+            <div className="hero-stat">
+              <span className="hero-stat-value">{matches.length}</span>
+              <span className="hero-stat-label">Matches Logged</span>
+            </div>
+            <div className="hero-stat-divider" />
+            <div className="hero-stat">
+              <span className="hero-stat-value">{formatByKey('Test') + formatByKey('ODI') + formatByKey('T20')}</span>
+              <span className="hero-stat-label">Total Formats</span>
+            </div>
+          </div>
+        </div>
+        <div className="hero-glow" />
+        <div className="hero-glow-2" />
+      </div>
+
       <div className="page-header">
         <div>
-          <h1 className="page-title"><GiCricketBat /> Dashboard</h1>
-          <p className="page-subtitle">Your cricket universe at a glance — players, matches & performances.</p>
+          <h1 className="page-title"><GiCricketBat /> Overview</h1>
+          <p className="page-subtitle">Quick stats & recent activity across your cricket data.</p>
         </div>
       </div>
 
@@ -91,7 +120,7 @@ const Dashboard = () => {
       <div className="recent-section">
         <h2 className="section-title">Recent Matches</h2>
         {matches.slice(0, 5).length === 0 ? (
-          <p className="empty-msg">No matches recorded yet.</p>
+          <p className="empty-msg">No matches recorded yet. <a href="/matches" style={{ color: 'var(--gold)', textDecoration: 'none', fontWeight: 600 }}>Add your first match →</a></p>
         ) : (
           <table className="data-table">
             <thead>
