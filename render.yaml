@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cric-stat-api
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGODB_URI
+        sync: false # set in Render dashboard — never commit secrets
+      - key: CLIENT_URL
+        sync: false # e.g. https://cric-stat.netlify.app (set after Netlify deploy)
+      - key: PORT
+        value: 10000
