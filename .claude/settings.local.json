@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/health\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/players\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/matches\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/stats\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/players\" -Method POST -Body '{\"name\":\"Virat Kohli\",\"country\":\"India\",\"role\":\"Batsman\",\"age\":35,\"image_url\":\"\"}' -ContentType \"application/json\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/matches\" -Method POST -Body '{\"team1\":\"India\",\"team2\":\"Australia\",\"match_date\":\"2024-01-15\",\"venue\":\"Melbourne Cricket Ground\",\"format\":\"Test\",\"result\":\"India won by 8 wickets\",\"winner\":\"India\"}' -ContentType \"application/json\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/stats\" -Method POST -Body '{\"player_id\":\"6a8bfa518ee314a606fe527a\",\"match_id\":\"6a8bfcd48ee314a606fe527c\",\"runs\":186,\"balls_faced\":344,\"fours\":18,\"sixes\":3,\"wickets\":0,\"overs_bowled\":0,\"runs_conceded\":0,\"catches\":1,\"is_out\":true}' -ContentType \"application/json\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/stats/player/6a8bfa518ee314a606fe527a\" -UseBasicParsing | Select-Object -ExpandProperty Content)",
+      "PowerShell(gh auth *)",
+      "PowerShell(git init *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(winget install *)",
+      "PowerShell(git *)"
+    ]
+  }
+}
