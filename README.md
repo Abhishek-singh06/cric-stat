@@ -1,4 +1,5 @@
 # 🏏 Cric-Stat
+Live at:: http://localhost:5173/
 
 A full-stack cricket statistics tracker — log players, matches, and per-match batting & bowling performances, with a dashboard of live charts. Built with **React 19 (Vite)** on the front end and **Node.js + Express + MongoDB (Mongoose)** on the back end.
 
