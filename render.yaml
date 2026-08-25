@@ -8,7 +8,7 @@ services:
     startCommand: node index.js
     healthCheckPath: /api/health
     envVars:
-      - key: MONGODB_URI
+      - key: MONGO_URI
         sync: false # set in Render dashboard — never commit secrets
       - key: CLIENT_URL
         sync: false # e.g. https://cric-stat.netlify.app (set after Netlify deploy)
